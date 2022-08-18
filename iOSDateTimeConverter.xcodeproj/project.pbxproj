@@ -11,6 +11,7 @@
 		0946B86F28AEA906008BD6D1 /* iOSDateTimeConverter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0946B86428AEA906008BD6D1 /* iOSDateTimeConverter.framework */; };
 		0946B87428AEA906008BD6D1 /* iOSDateTimeConverterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0946B87328AEA906008BD6D1 /* iOSDateTimeConverterTests.swift */; };
 		0946B87528AEA906008BD6D1 /* iOSDateTimeConverter.h in Headers */ = {isa = PBXBuildFile; fileRef = 0946B86728AEA906008BD6D1 /* iOSDateTimeConverter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0946B87F28AEAA63008BD6D1 /* DateAndTimeConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0946B87E28AEAA63008BD6D1 /* DateAndTimeConverter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +30,7 @@
 		0946B86828AEA906008BD6D1 /* iOSDateTimeConverter.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = iOSDateTimeConverter.docc; sourceTree = "<group>"; };
 		0946B86E28AEA906008BD6D1 /* iOSDateTimeConverterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iOSDateTimeConverterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0946B87328AEA906008BD6D1 /* iOSDateTimeConverterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSDateTimeConverterTests.swift; sourceTree = "<group>"; };
+		0946B87E28AEAA63008BD6D1 /* DateAndTimeConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateAndTimeConverter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +55,7 @@
 		0946B85A28AEA906008BD6D1 = {
 			isa = PBXGroup;
 			children = (
+				0946B87E28AEAA63008BD6D1 /* DateAndTimeConverter.swift */,
 				0946B86628AEA906008BD6D1 /* iOSDateTimeConverter */,
 				0946B87228AEA906008BD6D1 /* iOSDateTimeConverterTests */,
 				0946B86528AEA906008BD6D1 /* Products */,
@@ -195,6 +198,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0946B86928AEA906008BD6D1 /* iOSDateTimeConverter.docc in Sources */,
+				0946B87F28AEAA63008BD6D1 /* DateAndTimeConverter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -396,6 +400,7 @@
 		0946B87C28AEA906008BD6D1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = YU6WB94747;
@@ -412,6 +417,7 @@
 		0946B87D28AEA906008BD6D1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = YU6WB94747;
