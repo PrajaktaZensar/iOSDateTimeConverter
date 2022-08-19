@@ -111,8 +111,3 @@ public extension Date {
 
 }
 
-https://medium.com/swift-productions/add-an-event-to-the-calendar-xcode-12-swift-5-3-35b8bf149859
-
-
-
-
