@@ -9,6 +9,10 @@ import Foundation
 
 public class DateAndTimeConverterClass {
     
+    public init() {
+        
+    }
+    
     public func getFormattedDate(serverTime: String, fromFormat: String , isWithMilliSeconds: Bool = false, toFormat: String) -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = fromFormat
