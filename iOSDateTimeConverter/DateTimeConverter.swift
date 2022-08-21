@@ -28,7 +28,7 @@ public class DateAndTimeConverterClass {
     }
     
     
-    public func convertUTCToLocalDate(serverTime: String, fromFormat: String , isWithMilliSeconds: Bool = false, toFormat: String) -> String {
+    public func convertUTCToLocalDate(serverTime: String, fromFormat: String) -> String {
         
         let formatter = DateFormatter()
         formatter.dateFormat = fromFormat
@@ -37,7 +37,7 @@ public class DateAndTimeConverterClass {
         let serverDate = formatter.date(from: serverTime)
         formatter.timeZone = TimeZone.current
         //let serverDate = formatter.date(from: serverTime)
-        formatter.dateFormat = toFormat
+            // formatter.dateFormat = toFormat
         if let date = serverDate {
             let localTime = formatter.string(from: date)
             return localTime
@@ -47,7 +47,7 @@ public class DateAndTimeConverterClass {
         }
     }
     
-    public func convertLocalToUTCDate(serverTime: String, fromFormat: String , isWithMilliSeconds: Bool = false, toFormat: String) -> String {
+    public func convertLocalToUTCDate(serverTime: String, fromFormat: String) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = fromFormat
         dateFormatter.calendar = Calendar.current
@@ -55,7 +55,7 @@ public class DateAndTimeConverterClass {
         
         if let date = dateFormatter.date(from: serverTime) {
             dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
-            dateFormatter.dateFormat = toFormat
+           // dateFormatter.dateFormat = toFormat
             
             return dateFormatter.string(from: date)
         }
