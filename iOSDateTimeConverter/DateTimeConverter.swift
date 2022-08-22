@@ -6,14 +6,24 @@
 //
 
 import Foundation
-
+// Date and time converter and all operations.
 public class DateAndTimeConverterClass {
     
     public init() {
         
     }
     
-    public func getFormattedDate(serverTime: String, fromFormat: String , isWithMilliSeconds: Bool = false, toFormat: String) -> String {
+    /**
+        Date conerter format call `getFormattedDate`
+     
+     - Parameter serverTime: server date
+     - Parameter fromFormat: server date format
+     - Parameter toFormat: format in which convert
+     - Returns: converted format string`internationalTime`.
+     
+    */
+    
+    public func getFormattedDate(serverTime: String, fromFormat: String , toFormat: String) -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = fromFormat
         let serverDate = formatter.date(from: serverTime)
@@ -27,6 +37,33 @@ public class DateAndTimeConverterClass {
         }
     }
     
+    /**
+        get current date  `getCurrentDate`
+     
+     - Returns: current date string`dateString`.
+     
+    */
+    
+    public func getCurrentDate() -> String {
+        
+        let now = Date()
+        let formatter = DateFormatter()
+        formatter.timeZone = TimeZone.current
+        formatter.dateFormat = "yyyy-MM-dd HH:mm"
+        let dateString = formatter.string(from: now)
+        return dateString
+        
+    }
+    
+    
+    /**
+        get UTC to local date  `convertUTCToLocalDate`
+     - Parameter serverTime: server date
+     - Parameter fromFormat: server date format
+     
+     - Returns: local date string `localTime`.
+     
+    */
     
     public func convertUTCToLocalDate(serverTime: String, fromFormat: String) -> String {
         
@@ -47,6 +84,15 @@ public class DateAndTimeConverterClass {
         }
     }
     
+    /**
+        get local to UTC date  `convertLocalToUTCDate`
+     - Parameter serverTime: server date
+     - Parameter fromFormat: server date format
+     
+     - Returns: UTC date string `date`.
+     
+    */
+    
     public func convertLocalToUTCDate(serverTime: String, fromFormat: String) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = fromFormat
@@ -62,18 +108,14 @@ public class DateAndTimeConverterClass {
         return ""
     }
     
-    public func getCurrentDateAndTime() -> String {
-        let currentDateTime = Date()
-        
-        // initialize the date formatter and set the style
-        let formatter = DateFormatter()
-        formatter.timeStyle = .medium
-        formatter.dateStyle = .long
-        
-        // get the date time String from the date object
-        return formatter.string(from: currentDateTime)
-        
-    }
+
+    
+    /**
+        get local to UTC date  `getCurrentTime`
+     
+     - Returns: current time `hour`:`minutes`.
+     
+    */
     
     public func getCurrentTime() -> String {
         let date = Date()
@@ -83,35 +125,84 @@ public class DateAndTimeConverterClass {
         return "\(hour):\(minutes)"
     }
     
-    public func getSpecificDate(byAdding component: Calendar.Component, value: Int) -> Date {
-        
-        let noon = Calendar.current.date(bySettingHour: 12, minute: 0, second: 0, of: Date())!
-        
-        return Calendar.current.date(byAdding: component, value: value, to: noon)!
-    }
+
+    /**
+        get current year  `getCurrentYear`
+     
+     - Returns: current year
+     
+    */
     
     public func getCurrentYear() -> Int{
         return Calendar.current.component(.year, from: Date())
     }
     
+    /**
+        get current month  `getCurrentMonth`
+     
+     - Returns: current month
+     
+    */
+    
     public func getCurrentMonth() -> Int{
         return Calendar.current.component(.month, from: Date())
     }
     
+    /**
+        get current month  `getCurrentDay`
+     
+     - Returns: current day
+     
+    */
+    
+    
     public func getCurrentDay() -> Int{
         return Calendar.current.component(.day, from: Date())
     }
+    
+    /**
+        get current month  `getYearFromDate`
+     
+     - Parameter date: your date
+     
+     - Returns:  Int `year`.
+     
+    */
     
     public func getYearFromDate(date: Date) -> Int{
         let year = Calendar.current.dateComponents([.year], from: date)
         return (year.year!)
     }
     
+    /**
+        convert date to string  `getDateFromString`
+     
+     - Parameter stringDate: your date in string format
+     - Parameter format: stringDate format
+     
+     
+     - Returns:  returns `stringDate` in date fromat.
+     
+    */
+    
+    
     public func getDateFromString(stringDate: String, format: String) -> Date? {
         let formatter = DateFormatter()
         formatter.dateFormat = format
         return formatter.date(from: stringDate)
     }
+    
+    
+    /**
+        convert string to date  `getStringFromDate`
+     
+     - Parameter date: your date
+     - Parameter format: date format
+     
+     
+     - Returns:  returns `stringDate` string format.
+     
+    */
     
     
     public func getStringFromDate(date: Date, format: String) -> String {
@@ -122,10 +213,30 @@ public class DateAndTimeConverterClass {
     }
     
     
+    /**
+        get timestamp from date  `getTimestampFromDate`
+     
+     - Parameter date: your date
+     - Returns:  returns `miliSeconds` in Int64.
+     
+    */
+    
+    
     public func getTimestampFromDate(date: Date) -> Int64 {
         let miliSeconds = date.timeIntervalSince1970
         return Int64(Int(miliSeconds*1000))
     }
+    
+    /**
+        get  age  `getAge`
+     
+     - Parameter birthDate: your birth date
+     - Returns: `orderedSame` if current date and birthdate is same.
+     - Returns: `orderedAscending` as your age.
+     - Returns: `orderedDescending` if birthdate is wrong.
+     
+    */
+    
     
     public func getAge(birthDate: Date) -> Int? {
         switch birthDate.compare(Date()) {
@@ -139,6 +250,18 @@ public class DateAndTimeConverterClass {
         }
     }
     
+    /**
+        date comparison  `compareDates`
+     
+     - Parameter date1: first date
+     - Parameter date2: second date
+     - Returns: `orderedSame` The two dates are same.
+     - Returns: `orderedAscending` Date1 is earlier than date2.
+     - Returns: `orderedDescending` Date1 is later than date2.
+     
+    */
+    
+    
     public func compareDates(date1: Date, date2: Date) -> String {
         switch date1.compare(date2){
         case .orderedSame: return "The two dates are same"
@@ -150,30 +273,89 @@ public class DateAndTimeConverterClass {
     }
     
     
+    
+    /**
+        Get Difference Between Two Dates In Days  `getDifferenceBetweenTwoDatesInDays`
+     
+     - Parameter date1: first date
+     - Parameter date2: second date
+     - Returns: `days.day` Difference Between Two Dates In Days.
+     
+    */
+    
+    
     public func getDifferenceBetweenTwoDatesInDays(date1: Date, date2: Date) -> Int {
         let days = Calendar.current.dateComponents([.day], from: date1, to: date2)
         return days.day ?? 0
     }
+    
+    
+    /**
+        Get Difference Between Two Dates In Days  `getDifferenceBetweenTwoDatesInMonths`
+     
+     - Parameter date1: first date
+     - Parameter date2: second date
+     - Returns: `days.month` Difference Between Two Dates In months.
+     
+    */
     
     public func getDifferenceBetweenTwoDatesInMonths(date1: Date, date2: Date) -> Int{
         let months = Calendar.current.dateComponents([.month], from: date1, to: date2)
         return months.month ?? 0
     }
     
+    /**
+        Get Difference Between Two Dates In Days  `getDifferenceBetweenTwoDatesInYears`
+     
+     - Parameter date1: first date
+     - Parameter date2: second date
+     - Returns: `days.year` Difference Between Two Dates In years.
+     
+    */
+    
+    
     public func getDifferenceBetweenTwoDatesInYears(date1: Date, date2: Date) -> Int{
         let years = Calendar.current.dateComponents([.year], from: date1, to: date2)
         return years.year ?? 0
     }
+    
+    /**
+        Get Difference Between Two Dates In hour  `getDifferenceBetweenTwoDatesInHours`
+     
+     - Parameter date1: first date
+     - Parameter date2: second date
+     - Returns: `days.year` Difference Between Two Dates In hours.
+     
+    */
     
     public func getDifferenceBetweenTwoDatesInHours(date1: Date, date2: Date) -> Int{
         let hours = Calendar.current.dateComponents([.hour], from: date1, to: date2)
         return hours.hour ?? 0
     }
     
+    
+    /**
+        Get Difference Between Two Dates In minutes  `getDifferenceBetweenTwoDatesInMinutes`
+     
+     - Parameter date1: first date
+     - Parameter date2: second date
+     - Returns: `days.year` Difference Between Two Dates In mintutes.
+     
+    */
+    
     public func getDifferenceBetweenTwoDatesInMinutes(date1: Date, date2: Date) -> Int{
         let minutes = Calendar.current.dateComponents([.minute], from: date1, to: date2)
         return minutes.minute ?? 0
     }
+    
+    /**
+        add number of days into date  `addNumberOfDaysToDate`
+     
+     - Parameter date: your date.
+     - Parameter count: number of days.
+     - Returns: `date` added of days.
+     
+    */
     
     public func addNumberOfDaysToDate(date: Date, count: Int) -> Date{
         let newComponent = DateComponents(day: count)
@@ -183,24 +365,46 @@ public class DateAndTimeConverterClass {
         return newDate
     }
     
+    /**
+        check if it is today  `isToday`
+     
+     - Parameter date: your date.
+     - Returns: if it is today will retrun true else false.
+     
+    */
+    
     public func isToday(date: Date) -> Bool{
         let today = Calendar.current.component(.day, from: Date())
         let dayToCompare = Calendar.current.component(.day, from: date)
         return today == dayToCompare
     }
     
+    /**
+        check if it is weekend  `isWeekEnd`
+     
+     - Parameter date: your date.
+     - Returns: if it is weekend will retrun true else false.
+     
+    */
+    
     public func isWeekEnd(date: Date) -> Bool{
         return Calendar.current.isDateInWeekend(date)
     }
     
+    
+    /**
+        get current time zone  `getCurrentTimeZone`
+     
+     - Returns: will return `TimeZone`.
+     
+    */
+    
     public func getCurrentTimeZone() -> TimeZone{
         return TimeZone.current
     }
-    
- 
-    
-    
+
 }
+
 
 public extension Date {
     
